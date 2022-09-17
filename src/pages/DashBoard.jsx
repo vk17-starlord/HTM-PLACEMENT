@@ -1,9 +1,10 @@
-import React from 'react'
+import React, { useEffect } from 'react'
 import CreateJobAlert from '../components/DashBoard/CreateJobAlert'
 import JobCard from '../components/DashBoard/JobCard';
+import Header from '../components/Header';
 import SearchInput from '../components/SearchInput'
-import {SubTitle, Title} from '../components/Typography';
-
+import { Title} from '../components/Typography';
+import {useAuth } from '../hooks/Auth';
 const SelectInput = ()=>{
  return <select id="countries" class="bg-gra text-gray-500 text-sm rounded-lg focus:ring-blue-500 focus:border-blue-500 block w-full p-2.5 ">
   <option value="new">Newest </option>
@@ -12,10 +13,14 @@ const SelectInput = ()=>{
 </select>
 }
 function DashBoard() {
-
-  let arr = new Array(12).fill(12);
+  const {GetUser} = useAuth();
+  useEffect(()=>{
+    GetUser()
+},[])
+  let arr = [1,2,3,4,5,6,7,8,9,10,11,12];
   return (
-    <div className='w-full bg-[#F8F7FF] min-h-screen'>
+    <div className='w-full bg-[#F8F7FF] min-h-screen pt-10'>
+        <Header/>
         <div className="container py-10  mx-auto">
         <SearchInput/>
         <div className=" my-10 w-full grid-cols-[3fr,9fr] grid">
@@ -28,13 +33,13 @@ function DashBoard() {
     <li class="w-full rounded-t-lg  ">
         <div class="flex items-center ">
             <input id="chkbox" type="checkbox" value="" class="w-4 h-4 text-blue-600 bg-gray-100 rounded  focus:ring-blue-500 "/>
-            <label for="chkbox" class="py-1 ml-2 w-full text-sm text-gray-500 ">Full Time</label>
+            <label htmlFor="chkbox" class="py-1 ml-2 w-full text-sm text-gray-500 ">Full Time</label>
         </div>
     </li>
     <li class="w-full rounded-t-lg  ">
         <div class="flex items-center ">
             <input id="chkbox" type="checkbox" value="" class="w-4 h-4 text-blue-600 bg-gray-100 rounded  focus:ring-blue-500 "/>
-            <label for="chkbox" class="py-1 ml-2 w-full text-sm text-gray-500 ">Part Time</label>
+            <label htmlFor="chkbox" class="py-1 ml-2 w-full text-sm text-gray-500 ">Part Time</label>
         </div>
     </li>
 </ul>
@@ -47,13 +52,13 @@ function DashBoard() {
             <li class="w-full rounded-t-lg  ">
                 <div class="flex items-center ">
                     <input id="chkbox" type="checkbox" value="" class="w-4 h-4 text-blue-600 bg-gray-100 rounded  focus:ring-blue-500 "/>
-                    <label for="chkbox" class="py-1 ml-2 w-full text-sm text-gray-500 ">Entry Level</label>
+                    <label htmlFor="chkbox" class="py-1 ml-2 w-full text-sm text-gray-500 ">Entry Level</label>
                 </div>
             </li>
             <li class="w-full rounded-t-lg  ">
                 <div class="flex items-center ">
                     <input id="chkbox" type="checkbox" value="" class="w-4 h-4 text-blue-600 bg-gray-100 rounded  focus:ring-blue-500 "/>
-                    <label for="chkbox" class="py-1 ml-2 w-full text-sm text-gray-500 ">Internship Experience</label>
+                    <label htmlFor="chkbox" class="py-1 ml-2 w-full text-sm text-gray-500 ">Internship Experience</label>
                 </div>
             </li>
         </ul>
@@ -65,25 +70,25 @@ function DashBoard() {
             <li class="w-full rounded-t-lg  ">
                 <div class="flex items-center ">
                     <input id="chkbox" type="checkbox" value="" class="w-4 h-4 text-blue-600 bg-gray-100 rounded  focus:ring-blue-500 "/>
-                    <label for="chkbox" class="py-1 ml-2 w-full text-sm text-gray-500 ">1000-10,000</label>
+                    <label htmlFor="chkbox" class="py-1 ml-2 w-full text-sm text-gray-500 ">1000-10,000</label>
                 </div>
             </li>
             <li class="w-full rounded-t-lg  ">
                 <div class="flex items-center ">
                     <input id="chkbox" type="checkbox" value="" class="w-4 h-4 text-blue-600 bg-gray-100 rounded  focus:ring-blue-500 "/>
-                    <label for="chkbox" class="py-1 ml-2 w-full text-sm text-gray-500 ">10,000-25,000</label>
+                    <label htmlFor="chkbox" class="py-1 ml-2 w-full text-sm text-gray-500 ">10,000-25,000</label>
                 </div>
             </li>
             <li class="w-full rounded-t-lg  ">
                 <div class="flex items-center ">
                     <input id="chkbox" type="checkbox" value="" class="w-4 h-4 text-blue-600 bg-gray-100 rounded  focus:ring-blue-500 "/>
-                    <label for="chkbox" class="py-1 ml-2 w-full text-sm text-gray-500 ">25,000-50,000</label>
+                    <label htmlFor="chkbox" class="py-1 ml-2 w-full text-sm text-gray-500 ">25,000-50,000</label>
                 </div>
             </li>
             <li class="w-full rounded-t-lg  ">
                 <div class="flex items-center ">
                     <input id="chkbox" type="checkbox" value="" class="w-4 h-4 text-blue-600 bg-gray-100 rounded  focus:ring-blue-500 "/>
-                    <label for="chkbox" class="py-1 ml-2 w-full text-sm text-gray-500 ">50,000-100,000</label>
+                    <label htmlFor="chkbox" class="py-1 ml-2 w-full text-sm text-gray-500 ">50,000-100,000</label>
                 </div>
             </li>
 
@@ -96,25 +101,25 @@ function DashBoard() {
             <li class="w-full rounded-t-lg  ">
                 <div class="flex items-center ">
                     <input id="chkbox" type="checkbox" value="" class="w-4 h-4 text-blue-600 bg-gray-100 rounded  focus:ring-blue-500 "/>
-                    <label for="chkbox" class="py-1 ml-2 w-full text-sm text-gray-500 ">Google</label>
+                    <label htmlFor="chkbox" class="py-1 ml-2 w-full text-sm text-gray-500 ">Google</label>
                 </div>
             </li>
             <li class="w-full rounded-t-lg  ">
                 <div class="flex items-center ">
                     <input id="chkbox" type="checkbox" value="" class="w-4 h-4 text-blue-600 bg-gray-100 rounded  focus:ring-blue-500 "/>
-                    <label for="chkbox" class="py-1 ml-2 w-full text-sm text-gray-500 ">Microsoft</label>
+                    <label htmlFor="chkbox" class="py-1 ml-2 w-full text-sm text-gray-500 ">Microsoft</label>
                 </div>
             </li>
             <li class="w-full rounded-t-lg  ">
                 <div class="flex items-center ">
                     <input id="chkbox" type="checkbox" value="" class="w-4 h-4 text-blue-600 bg-gray-100 rounded  focus:ring-blue-500 "/>
-                    <label for="chkbox" class="py-1 ml-2 w-full text-sm text-gray-500 ">TCS</label>
+                    <label htmlFor="chkbox" class="py-1 ml-2 w-full text-sm text-gray-500 ">TCS</label>
                 </div>
             </li>
             <li class="w-full rounded-t-lg  ">
                 <div class="flex items-center ">
                     <input id="chkbox" type="checkbox" value="" class="w-4 h-4 text-blue-600 bg-gray-100 rounded  focus:ring-blue-500 "/>
-                    <label for="chkbox" class="py-1 ml-2 w-full text-sm text-gray-500 ">Amazon</label>
+                    <label htmlFor="chkbox" class="py-1 ml-2 w-full text-sm text-gray-500 ">Amazon</label>
                 </div>
             </li>
         </ul>
