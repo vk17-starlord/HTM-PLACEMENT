@@ -23,7 +23,7 @@ const SignIn = () => {
         validationSchema={validationSchema}
       >
         <Form className="flex flex-col justify-center items-start lg:items-center  h-full w-auto mx-6 lg:mr-36">
-          <p className="text-[3rem] font-semibold ml-16">Create Account</p>
+          <p className="text-[3rem] font-semibold ml-16">Hey! Welcome Back</p>
           <div className="m-4 w-72 lg:w-96">
             <p className="text-left font-semibold mb-1">Enter Your Email Id</p>
             <Field
@@ -60,15 +60,15 @@ const SignIn = () => {
               type="submit"
               className="bg-blue-600 text-white w-[25rem]  lg:w-[30rem] px-12 py-2 rounded-lg "
             >
-              Create My Account
+              Login To My Account
             </button>
           </div>
 
           <div className="mw-72 lg:w-96 text-center">
             <p className="ml-28">
-              Already Have An Account?
-              <a href="/sign-in" className="text-blue-800 font-semibold">
-                Sign In
+              Don't Have An Account?{" "}
+              <a href="/sign-up" className="text-blue-800 font-semibold">
+                Sign Up
               </a>
             </p>
           </div>
