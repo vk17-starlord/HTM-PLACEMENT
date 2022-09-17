@@ -3,8 +3,8 @@ const Heading = ({children,...props})=>{
 }
 
 
-const Paragraph = ({children,...props})=>{
-    return <p className="font-Inter text-[14px] text-p-gray " props={props} > {children}   </p>
+const Paragraph = ({className,children,...props})=>{
+    return <p className={`font-Inter text-[14px] text-p-gray ${className} `} props={props} > {children}   </p>
   }
 
   const Title = ({children,...props})=>{
