@@ -4,11 +4,15 @@ import { Routes, Route } from "react-router-dom";
 import LandingPage from './pages/LandingPage';
 import ProfilePage from './pages/ProfilePage';
 import CompanyProfile from './pages/CompanyProfile';
+import DashBoard from './pages/DashBoard';
+import JobDetail from './pages/JobDetail';
 function App() {
   return (
     <div className="App">
       <Routes>
         <Route path="/" element={<LandingPage />} />
+        <Route path="/dashboard" element={<DashBoard />} />
+        <Route path='/Job/:jobid' element={<JobDetail/>}/>
         <Route path='/student/:id' element={<ProfilePage />} />
         <Route path="/company/:id" element={<CompanyProfile />} />
       </Routes>
