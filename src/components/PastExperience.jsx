@@ -14,6 +14,8 @@ const PastSchema = Yup.object().shape({
 
 });
 function PastExperience({ toggle }) {
+
+
     return (
         <Popup>
             <div className={` flex flex-col w-[500px] justify-center mx-auto relative bg-white p-8 rounded-lg`}>
@@ -49,7 +51,10 @@ function PastExperience({ toggle }) {
                                 <div className='text-red-600 mb-2'>{errors.DescProject}</div>
                             ) : null}
 
-                            <button className='px-10 py-2 mt-4 relative left-[-155px] bg-primary text-white rounded-md hover:bg-primary-dark' type='submit' >Save</button>
+                            <button className='px-10 py-2 mt-4 relative bg-primary text-white rounded-md hover:bg-primary-dark' type='submit' >Save</button>
+                            <PrimaryButton className="ml-4" onClick={() => {
+                                toggle()
+                            }}>Cancel</PrimaryButton>
                         </Form>
                     )}
                 </Formik>

@@ -18,7 +18,7 @@ function SkilsForm({ toggle }) {
                 <Formik
                     initialValues={{
                         SkillName: "",
-                        Level:""
+                        Level: "Beginer"
                     }}
                     validationSchema={SkillSchema}
                     onSubmit={(values) => {
@@ -31,7 +31,7 @@ function SkilsForm({ toggle }) {
                             <label htmlFor="SkillName" className='font-Inter relative left-[-165px] text-[16px] font-medium text-black'>Company Name</label>
                             <Field name="SkillName" placeholder="Skill Name" id="SkillName" type="text" className=" border border-gray-300 text-gray-900 text-sm rounded-lg focus:ring-blue-500 focus:border-blue-500 block w-full p-2.5 my-3 " />
                             {errors.SkillName && touched.SkillName ? (
-                                <div className='text-red-600 mb-2'>{errors.SkillName}</div>
+                                <div className='text-red-600 '>{errors.SkillName}</div>
                             ) : null}
 
                             <label htmlFor="Level" className='font-Inter relative left-[-190px] text-[16px] font-medium text-black'>Level</label>
@@ -40,10 +40,13 @@ function SkilsForm({ toggle }) {
                                 <option value="Intermidiate" className='bg-white'>Intermidiate</option>
                             </Field>
                             {errors.Level && touched.Level ? (
-                                <div className='text-red-600 mb-2'>{errors.Level}</div>
+                                <div className='text-red-600 '>{errors.Level}</div>
                             ) : null}
 
-                            <button className='px-10 py-2 mt-4 relative left-[-155px] bg-primary text-white rounded-md hover:bg-primary-dark' type='submit' >Save</button>
+                            <button className='px-10 py-2 mt-4 relative bg-primary text-white rounded-md hover:bg-primary-dark' type='submit' >Save</button>
+                            <PrimaryButton className="ml-4" onClick={() => {
+                                toggle()
+                            }}>Cancel</PrimaryButton>
                         </Form>
                     )}
                 </Formik>
