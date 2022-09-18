@@ -19,7 +19,7 @@ function ProfileImg() {
     // };
 
     return (
-        <div className=''>
+        <div className='justify-center flex'>
             {/* <input
                 type="file"
                 accept="image/*"
@@ -30,7 +30,7 @@ function ProfileImg() {
                 }} */}
             {/* /> */}
             <span className=' bg-gray cursor-pointer' onClick={() => imageUploader.current.click()}>
-                <img ref={uploadedImage} alt="UploadProfileImage" className="relative rounded-full top-[-90px] left-[101px] w-48 h-48 bg-slate-400 object-cover"/>
+                <img ref={uploadedImage} alt="profile" className="relative rounded-full top-[-90px]  w-48 h-48 bg-slate-400 object-cover"/>
             </span>
         </div>
     );
