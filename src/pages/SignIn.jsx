@@ -44,7 +44,7 @@ const SignIn = () => {
 
 {(({errors,touched})=>{
         return   <Form className="flex flex-col justify-center items-start lg:items-center  h-full w-auto mx-6 lg:mr-36">
-        <p className="text-[3rem] font-semibold ml-16">Login To Your Account</p>
+        <p className="text-[3rem] font-semibold lg:ml-24">Login To Your Account</p>
       
         <div className="m-4 w-72 lg:w-96">
           <p className="text-left font-semibold mb-1">Enter Your Email Id</p>
