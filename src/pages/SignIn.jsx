@@ -73,6 +73,18 @@ const SignIn = () => {
 
             <option value="company">Company</option>
 
+          <div className="w-72 lg:w-96 text-center">
+            <p className="ml-28">
+              Don't Have An Account?{" "}
+              <a href="/sign-up" className="text-blue-800 font-semibold">
+                Sign Up
+              </a>
+            </p>
+          </div>
+          <></>
+        </Form>
+      </Formik>
+
             <option value="college">College</option>
           </Field>
         </div>
@@ -99,6 +111,7 @@ const SignIn = () => {
    
       })}
        </Formik>
+
       <div className="flex flex-col justify-evenly items-center h-full bg-blue-500">
         <div className="text-white ml-12 text-left w-auto">
           <p className="text-[2.4rem] font-semibold w-full mb-5">

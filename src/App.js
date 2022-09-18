@@ -7,8 +7,13 @@ import DashBoard from './pages/DashBoard';
 import JobDetail from './pages/JobDetail';
 import ProfilePage from './pages/ProfilePage'
 import CompanyProfile from './pages/CompanyProfile';
+
+import { AboutForm } from './components/CompanyProfile/AboutForm';
+import JobCardForm from './components/CompanyProfile/JobCardForm';
+
 import { useAuth } from './hooks/Auth';
 import Protected from './utils/Protected';
+
 function App() {
   const {validUser} = useAuth();
   return (
