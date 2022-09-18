@@ -5,17 +5,37 @@ import ProfileImg from "../components/ProfileImg"
 import PopFormOne from '../components/PopFormOne';
 import { SubTitle } from '../components/Typography';
 import EducationForm from '../components/EducationForm';
+import ProjectForm from '../components/ProjectForm';
+import PastExperience from '../components/PastExperience';
+import Certifications from '../components/CertificateForm';
+import SkilsForm from '../components/SkillsForm';
 
 function ProfilePage() {
 
     const [openForm1, setopenForm1] = useState(false);
     const [openForm2, setopenForm2] = useState(false);
+    const [openForm3, setopenForm3] = useState(false);
+    const [openForm4, setopenForm4] = useState(false);
+    const [openForm5, setopenForm5] = useState(false);
+    const [openForm6, setopenForm6] = useState(false);
 
     const toggle1 = () => {
         setopenForm1(!openForm1)
     }
     const toggle2 = () => {
         setopenForm2(!openForm2)
+    }
+    const toggle3 = () => {
+        setopenForm3(!openForm3)
+    }
+    const toggle4 = () => {
+        setopenForm4(!openForm4)
+    }
+    const toggle5 = () => {
+        setopenForm5(!openForm5)
+    }
+    const toggle6 = () => {
+        setopenForm6(!openForm6)
     }
     return (
         <div className=' mb-5'>
@@ -72,26 +92,26 @@ function ProfilePage() {
             </div><div className='flex   justify-start border-b-2 pb-2  lg:mx-72 mx-[30px] mt-5'>
                 <span>Project</span>
                 <div className='text-p-gray  mx-auto flex flex-col justify-center items-center'>No Project Added </div><div className='p-2 rounded-full bg-[#F8F7FF]'>
-                    <p className='text-light-voilet px-2 text-lg '>+</p>
+                    <p className='text-light-voilet px-2 text-lg cursor-pointer' onClick={() => toggle3()}>+</p>
                 </div>
 
             </div><div className='flex   justify-start border-b-2 pb-2  lg:mx-72 mx-[30px] mt-5'>
                 <span>Past Experience</span>
                 <div className='text-p-gray mx-auto  flex flex-col  justify-center items-center'>No Past Experience Added </div><div className='p-2 rounded-full bg-[#F8F7FF]'>
-                    <p className='text-light-voilet px-2 text-lg '>+</p>
+                    <p className='text-light-voilet px-2 text-lg cursor-pointer' onClick={() => toggle4()}>+</p>
                 </div>
 
             </div>
             <div className='flex   justify-start border-b-2 pb-2  lg:mx-72 mx-[30px] mt-5'>
                 <span>Certifications</span>
                 <div className='text-p-gray mx-auto  flex  flex-col justify-center items-center'>No Certifications Added </div><div className='p-2 rounded-full bg-[#F8F7FF]'>
-                    <p className='text-light-voilet px-2 text-lg '>+</p>
+                    <p className='text-light-voilet px-2 text-lg cursor-pointer' onClick={() => toggle5()}>+</p>
                 </div>
 
             </div><div className='flex justify-start pb-2  lg:mx-72 mx-[30px] mt-5'>
                 <span>Skills</span>
                 <div className='text-p-gray mx-auto  flex flex-col  justify-center items-center'>No Skills Added </div><div className='p-2 rounded-full bg-[#F8F7FF]'>
-                    <p className='text-light-voilet px-2 text-lg '>+</p>
+                    <p className='text-light-voilet px-2 text-lg cursor-pointer ' onClick={() => toggle6()}>+</p>
                 </div>
 
             </div>
@@ -100,6 +120,18 @@ function ProfilePage() {
             }
             {
                 openForm2 ? <EducationForm toggle={toggle2} /> : null
+            }
+            {
+                openForm3 ? <ProjectForm toggle={toggle3} /> : null
+            }
+            {
+                openForm4 ? <PastExperience toggle={toggle4} /> : null
+            }
+            {
+                openForm5 ? <Certifications toggle={toggle5} /> : null
+            }
+            {
+                openForm6 ? <SkilsForm toggle={toggle6} /> : null
             }
         </div>
 

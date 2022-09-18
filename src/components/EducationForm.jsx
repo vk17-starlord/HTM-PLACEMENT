@@ -46,8 +46,8 @@ function EducationForm({ toggle }) {
                                 <option value="UnderGraduate" className='bg-white'>UnderGraduate</option>
                                 <option value="Junior College" className='bg-white'>Junior College</option>
                             </Field>
-                            {errors.Llink && touched.Llink ? (
-                                <div className='text-red-600 mb-2'>{errors.Llink}</div>
+                            {errors.EduType && touched.EduType ? (
+                                <div className='text-red-600 mb-2'>{errors.EduType}</div>
                             ) : null}
 
                             <label htmlFor="Status" className='font-Inter relative left-[-190px] text-[16px] font-medium text-black'>Status</label>
@@ -55,10 +55,9 @@ function EducationForm({ toggle }) {
                                 <option value="Persuing" className='bg-white'>Persuing</option>
                                 <option value="Completed" className='bg-white'>Completed</option>
                             </Field>
-                            {errors.Llink && touched.Llink ? (
-                                <div className='text-red-600 mb-2'>{errors.Llink}</div>
+                            {errors.Status && touched.Status ? (
+                                <div className='text-red-600 mb-2'>{errors.Status}</div>
                             ) : null}
-
 
                             <label htmlFor="CompletionYr" className='font-Inter relative left-[-155px] text-[16px] font-medium text-black'>Completion Year</label>
                             <Field name="CompletionYr" id="CompletionYr" type="number" className=" border border-gray-300 text-gray-900 text-sm rounded-lg focus:ring-blue-500 focus:border-blue-500 block w-full p-2.5 my-3 " />
