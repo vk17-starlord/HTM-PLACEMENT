@@ -26,7 +26,7 @@ export const AboutForm = ({toggle}) => {
       });
   
     return (
-      <div className="h-screen grid grid-cols-1 place-items-center bg-[rgba(0,0,0,0.5)] w-full fixed shadow-md  ">
+      <div className="h-screen grid grid-cols-1 place-items-center bg-[rgba(0,0,0,0.5)] w-full top-0 left-0 fixed shadow-md  ">
         <div className="flex flex-col items-start justify-center p-12 rounded-lg bg-white ">
           <Formik
             initialValues={initialValues}

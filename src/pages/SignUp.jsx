@@ -32,9 +32,11 @@ const SignIn = () => {
           } ).then((ele)=>{
             let data = ele.data;
             let {token}=data;
+            sessionStorage.setItem('userType',values.userType);
+            
             setToken(token)
             navigate('/dashboard');
-          }).catch((err)=>alert(err.response.data.message))
+          }).catch((err)=>alert(err.response.data.error))
         }}
         
         validationSchema={validationSchema}
