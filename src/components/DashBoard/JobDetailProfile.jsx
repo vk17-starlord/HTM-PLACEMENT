@@ -24,7 +24,7 @@ function JobDetailProfile({id,job}) {
         <img src={logo} className="w-16" alt="" />
   <div className="block text-left px-5">
         <h1 className='font-medium text-xl'>{job?.title}</h1>
-         <SubTitle >{job?.company}</SubTitle>
+         <SubTitle >{job?.company }</SubTitle>
   </div>
         </div>
         <PrimaryButton>View Profile</PrimaryButton>

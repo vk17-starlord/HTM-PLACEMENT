@@ -48,6 +48,7 @@ const AuthContext = createContext({});
                 };
                 axios.get(`${BaseUrl}/student/profile`,config).then((res)=>{
                    let user = res.data.data[0];
+                   console.log(user)
                    setUserData(user)
                 
                 }).catch((err)=>console.log(err))

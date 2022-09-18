@@ -1,4 +1,4 @@
-import React, { useState } from 'react';
+import React, { useEffect, useState } from 'react';
 import CoverImg from '../components/CoverImg';
 
 import ProfileImg from "../components/ProfileImg"
@@ -9,6 +9,7 @@ import ProjectForm from '../components/ProjectForm';
 import PastExperience from '../components/PastExperience';
 import Certifications from '../components/CertificateForm';
 import SkilsForm from '../components/SkillsForm';
+import { useAuth } from '../hooks/Auth';
 
 function ProfilePage() {
 
@@ -18,7 +19,7 @@ function ProfilePage() {
     const [openForm4, setopenForm4] = useState(false);
     const [openForm5, setopenForm5] = useState(false);
     const [openForm6, setopenForm6] = useState(false);
-
+    const {UserData} = useAuth()
     const toggle1 = () => {
         setopenForm1(!openForm1)
     }
@@ -37,10 +38,15 @@ function ProfilePage() {
     const toggle6 = () => {
         setopenForm6(!openForm6)
     }
+    const {GetUser} = useAuth();
+    useEffect(() => {
+        GetUser()
+        
+    }, []);
     return (
         <div className=' mb-5'>
             <div className='w-full'>
-                <CoverImg />
+                <CoverImg img={UserData?.CoverIMG} />
             </div>
             <div className=' grid grid-cols-2'>
                 <div className="">
