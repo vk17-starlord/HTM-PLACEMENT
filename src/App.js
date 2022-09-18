@@ -23,16 +23,23 @@ function App() {
         <Route path="/" element={<LandingPage />} />
         <Route path="/sign-in" element={<SignIn />} />
         <Route path="/sign-up" element={<SignUp />} />
-
         <Route path="/dashboard" element={<DashBoard />} />
         <Route path="/Job/:jobid" element={<JobDetail />} />
         <Route path="/student/:id" element={<ProfilePage />} />
         <Route path="/company/:id" element={<CompanyProfile />} />
         <Route path="/company/createJob" element={<JobForm />} />
-        <Route path="/company/jobApplications/id" element={<DisplayJobApplications />} />
-        <Route path="/my-applications" element={            <Protected isLoggedIn={validUser()}>
+        <Route
+          path="/company/jobApplications/id"
+          element={<DisplayJobApplications />}
+        />
+        <Route
+          path="/my-applications"
+          element={
+            <Protected isLoggedIn={validUser()}>
               <MyApplications />
-            </Protected>} />
+            </Protected>
+          }
+        />
         <Route
           path="/dashboard"
           element={
@@ -41,9 +48,6 @@ function App() {
             </Protected>
           }
         />
-
-        
-
 
         <Route
           path="/Job/:jobid"

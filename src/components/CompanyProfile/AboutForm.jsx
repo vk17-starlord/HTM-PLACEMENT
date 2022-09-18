@@ -1,8 +1,13 @@
-import { Formik,Field,Form } from 'formik';
-import React from 'react'
-import * as yup from 'yup'
+import { Formik, Field, Form } from "formik";
+import React from "react";
+import * as yup from "yup";
+import { useNavigate } from "react-router-dom";
+import axios from "axios";
+import { BaseUrl } from "../../api/apiURL";
+import { useAuth } from "../../hooks/Auth";
 
 export const AboutForm = ({toggle}) => {
+  const navigate = useNavigate();
     const initialValues = {
       about: "",
       website: "",
@@ -33,6 +38,39 @@ export const AboutForm = ({toggle}) => {
             validationSchema={validationSchema}
             onSubmit={(data) =>{
                 console.log(data);
+                const token = sessionStorage.getItem("bearer");
+            const config = {
+              headers: { "x-access-token": `Bearer ${token}` },
+            };
+
+            axios
+            .patch(
+                `${BaseUrl}/company/profile`,
+                {
+                  body: {
+                    tag: "about",
+                    profile: {
+                      about: data.about,
+                      website: data.website,
+                      industry: data.industry,
+                      companySize: data.companySize,
+                      headquarters: data.headquarters,
+                      specialties: data.specialties,
+                      workspace: data.workspace,
+                      timings: data.timings,
+                    },
+                  },
+                },
+                config
+              )
+              .then((ele) => {
+                alert("Job Created Successfully");
+                navigate("/dashboard");
+              })
+              .catch((err) => {
+                alert("/Error Occurred");
+                navigate("/dashboard");
+              });
                 toggle()
                 
             }}
@@ -43,52 +81,52 @@ export const AboutForm = ({toggle}) => {
                 name="about"
                 type="text"
                 as="textarea"
-                className=" w-[30rem] lg:w-[40rem]   pl-12 py-2 rounded border-2"
+                className=" w-[30rem] lg:w-[40rem]   pl-5 py-2 rounded border-2"
               />
               <p className="text-left font-semibold mb-1">Website</p>
               <Field
                 name="website"
                 type="text"
-                className=" w-[30rem] lg:w-[40rem]   pl-12 py-2 rounded border-2"
+                className=" w-[30rem] lg:w-[40rem]   pl-5 py-2 rounded border-2"
               />
               <p className="text-left font-semibold mb-1">Industry</p>
               <Field
                 name="industry"
                 type="text"
-                className=" w-[30rem] lg:w-[40rem]   pl-12 py-2 rounded border-2"
+                className=" w-[30rem] lg:w-[40rem]   pl-5 py-2 rounded border-2"
               />
               <p className="text-left font-semibold mb-1">Company Size</p>
               <Field
                 name="companySize"
                 type="text"
-                className=" w-[30rem] lg:w-[40rem]   pl-12 py-2 rounded border-2"
+                className=" w-[30rem] lg:w-[40rem]   pl-5 py-2 rounded border-2"
               />
               <p className="text-left font-semibold mb-1">Headquarters</p>
               <Field
                 name="headquarters"
                 type="text"
-                className=" w-[30rem] lg:w-[40rem]   pl-12 py-2 rounded border-2"
+                className=" w-[30rem] lg:w-[40rem]   pl-5 py-2 rounded border-2"
               />
               <p className="text-left font-semibold mb-1">Specialties</p>
               <Field
                 name="specialties"
                 type="text"
                 as="textarea"
-                className=" w-[30rem] lg:w-[40rem]   pl-12 py-2 rounded border-2"
+                className=" w-[30rem] lg:w-[40rem]   pl-5 py-2 rounded border-2"
               />
               <p className="text-left font-semibold mb-1">Workspace</p>
               <Field
                 name="workspace"
                 type="text"
                 as="textarea"
-                className=" w-[30rem] lg:w-[40rem]   pl-12 py-2 rounded border-2"
+                className=" w-[30rem] lg:w-[40rem]   pl-5 py-2 rounded border-2"
               />
               <p className="text-left font-semibold mb-1">Typical Timing on Site</p>
               <Field
                 name="timings"
                 type="text"
                 
-                className=" w-[30rem] lg:w-[40rem]   pl-12 py-2 rounded border-2"
+                className=" w-[30rem] lg:w-[40rem]   pl-5 py-2 rounded border-2"
               />
               <div className="mt-3  w-full">
             <button

@@ -7,8 +7,9 @@ import editIcon from "../components/assets/icons/edit.svg";
 import envelopeIcon from "../components/assets/icons/envelope.svg";
 import calendarIcon from "../components/assets/icons/calendar.svg";
 import locationIcon from "../components/assets/icons/location.svg";
-import JobCardForm from "../components/CompanyProfile/JobCardForm";
+import CompanyProfileForm from "../components/CompanyProfile/CompanyProfilePage";
 import AboutForm from "../components/CompanyProfile/AboutForm";
+import JobForm from "../components/JobForm";
 
 
 function CompanyProfile() {
@@ -25,7 +26,7 @@ function CompanyProfile() {
     <div className="w-full min-h-screen  overflow-hidden">
         {
         form ? 
-       <JobCardForm toggle={toggle} /> : null
+       <CompanyProfileForm toggle={toggle} /> : null
       }
       {
         about ? <AboutForm toggle={toggleabout} /> : null
