@@ -33,7 +33,6 @@ function App() {
         <Route path="/my-applications" element={            <Protected isLoggedIn={validUser()}>
               <MyApplications />
             </Protected>} />
-
         <Route
           path="/dashboard"
           element={
@@ -42,6 +41,9 @@ function App() {
             </Protected>
           }
         />
+
+        
+
 
         <Route
           path="/Job/:jobid"

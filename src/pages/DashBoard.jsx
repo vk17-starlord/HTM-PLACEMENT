@@ -1,23 +1,21 @@
-import React, { useEffect, useState } from "react";
-import CompanyHeader from "../components/CompanyHeader";
-import CreateJobAlert from "../components/DashBoard/CreateJobAlert";
-import JobCard from "../components/DashBoard/JobCard";
-import Header from "../components/Header";
-import SearchInput from "../components/SearchInput";
-import { Title } from "../components/Typography";
-import { useAuth } from "../hooks/Auth";
-const SelectInput = () => {
-  return (
-    <select
-      id="countries"
-      class="bg-gra text-gray-500 text-sm rounded-lg focus:ring-blue-500 focus:border-blue-500 block w-full p-2.5 "
-    >
-      <option value="new">Newest </option>
-      <option value="old">Oldest </option>
-      <option value="relevance">Relevance</option>
-    </select>
-  );
-};
+
+import React, { useEffect, useState } from 'react'
+import CompanyHeader from '../components/CompanyHeader';
+import CreateJobAlert from '../components/DashBoard/CreateJobAlert'
+import JobCard from '../components/DashBoard/JobCard';
+import Header from '../components/Header';
+import SearchInput from '../components/SearchInput'
+import { Title} from '../components/Typography';
+import {useAuth } from '../hooks/Auth';
+import CompanyDashboard from './CompanyDashboard';
+const SelectInput = ()=>{
+ return <select id="countries" class="bg-gra text-gray-500 text-sm rounded-lg focus:ring-blue-500 focus:border-blue-500 block w-full p-2.5 ">
+  <option value="new">Newest </option>
+  <option value="old">Oldest </option>
+  <option value="relevance">Relevance</option>
+</select>
+}
+
 function DashBoard() {
   const { GetUser, getCompany } = useAuth();
   const [userType, setuserType] = useState(null);
@@ -32,10 +30,15 @@ function DashBoard() {
   }, []);
   let arr = [1, 2, 3, 4, 5, 6, 7, 8, 9, 10, 11, 12];
   return (
-    <div className="w-full bg-[#F8F7FF] min-h-screen pt-10">
-      {userType === "company" ? <CompanyHeader /> : <Header />}
-      <div className="container py-10  mx-auto mt-10">
-        <SearchInput />
+
+    <div className='w-full bg-[#F8F7FF] min-h-screen pt-10'>
+        {
+            userType==="company"?<CompanyHeader/>:<Header/>
+        }
+
+      {
+        userType==="company"?<CompanyDashboard/>:<div className="w-[90%] py-10  mx-auto">
+        <SearchInput/>
         <div className=" my-10 w-full grid-cols-[3fr,9fr] grid">
           <div className="sidebar ">
             <CreateJobAlert />
@@ -269,6 +272,7 @@ function DashBoard() {
           </div>
         </div>
       </div>
+
     </div>
   );
 }
