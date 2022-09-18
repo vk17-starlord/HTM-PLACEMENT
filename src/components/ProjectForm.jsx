@@ -13,12 +13,38 @@ const ProjectSchema = Yup.object().shape({
     Desc: Yup.string()
         .required("Required"),
     Website: Yup.string().url()
-        .required("Required")
+        .required("Required"),
+    Image: Yup.string()
+        .required("Image is neccesary")
 
 
 
 });
 function ProjectForm({ toggle }) {
+
+    const [imgPreview, setImgPreview] = useState(null);
+    const [error, setError] = useState(false);
+
+    const handleImageChange = (e) => {
+        setError(false);
+        const selected = e.target.files[0];
+        const ALLOWED_TYPES = ["image/png", "image/jpeg", "image/png"]
+        if (selected && ALLOWED_TYPES.includes(selected.type)) {
+            console.log("selected");
+            let reader = new FileReader();
+            reader.onloadend = () => {
+                setImgPreview(reader.result);
+            }
+            reader.readAsDataURL(selected);
+            console.log(imgPreview);
+        }
+        else {
+            console.log("Not selected");
+
+            setError(true);
+        }
+    }
+
     return (
         <Popup>
             <div className={` flex flex-col w-[500px] justify-center mx-auto relative bg-white p-8 rounded-lg`}>
@@ -28,7 +54,7 @@ function ProjectForm({ toggle }) {
                         Skills: "",
                         Desc: "",
                         Website: "",
-                        // Image:""
+                        Image:""
                     }}
                     validationSchema={ProjectSchema}
                     onSubmit={(values) => {
@@ -61,15 +87,20 @@ function ProjectForm({ toggle }) {
                             {errors.Website && touched.Website ? (
                                 <div className='text-red-600 mb-2'>{errors.Website}</div>
                             ) : null}
-                            <div className='flex flex-row justify-around'>
-                                <label htmlFor="Image" className='font-Inter relative  text-[16px] font-medium text-black'>Upload Cover Photo of Project</label>
-
-                                <PrimaryButton>
-                                    <input type="file" name="Image" id="Image" className='hidden' />
+                            <div className='flex flex-row justify-around items-center mb-4'>
+                                <label htmlFor="Image" className='font-Inter relative left-[-20px] text-[16px] font-medium text-black'>Cover Photo of Project</label>
+                                <input type="file" name="Image" id="Image" className='hidden'
+                                        onChange={handleImageChange}
+                                     />
+                                <button className='px-4 py-1  bg-primary text-white rounded-md hover:bg-primary-dark'>
                                     Upload Image
-                                </PrimaryButton>
+                                </button>
                             </div>
-                            <button className='px-10 py-2 mt-4 relative left-[-155px] bg-primary text-white rounded-md hover:bg-primary-dark' type='submit' >Save</button>
+                            <button className='px-10 py-2 mt-4 relative  bg-primary text-white rounded-md hover:bg-primary-dark' type='submit' >Save</button>
+
+                            <PrimaryButton className="ml-4" onClick={() => {
+                                toggle()
+                            }}>Cancel</PrimaryButton>
                         </Form>
                     )}
                 </Formik>
