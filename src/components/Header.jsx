@@ -3,11 +3,11 @@ import {Link} from 'react-router-dom';
 import { useAuth } from '../hooks/Auth';
 const Header = () => {
 
-    const {getCompany,UserData,LogOut} = useAuth();
+    const {GetUser,UserData,LogOut} = useAuth();
 
     useEffect(() => {
-        console.log('called')
-      getCompany();
+        GetUser();
+        
     }, []);
   
     return (
@@ -24,10 +24,16 @@ const Header = () => {
                     <Link className='mx-2 hover:underline hover:text-black text-gray-500 hover:font-medium' to="/Experience">Interview Experience</Link>
                     <Link className='mx-2 hover:underline hover:text-black text-gray-500 hover:font-medium' to="/Experience">Notification</Link>
                 </div>
-                <div className="profile cursor-pointer flex justify-center items-center">
+                <div className="profile flex  ">
+                    <Link to={`/student/${UserData?._id}`}>
+                    <div className='cursor-pointer flex justify-center items-center'>
                     <img src="https://images.pexels.com/photos/2269872/pexels-photo-2269872.jpeg?auto=compress&cs=tinysrgb&w=1260&h=750&dpr=2" className='w-8 h-8 rounded-full' alt="" />
                     <h1 className='mx-2 font-medium text-sm '>{UserData?.name }</h1>
+                
+                    </div>
+                    </Link>
                     <div className="logout">
+
                     <button onClick={()=>LogOut()} className='text-2xl text-gray-500'><i class='bx bx-log-in-circle'></i></button>
                 </div>
                 </div>

@@ -1,22 +1,45 @@
-import React, { useState } from 'react'
+import React, { useEffect, useState } from 'react'
 import {useParams} from 'react-router-dom';
 import { PrimaryButton } from '../components/Buttons';
 import JobDetailProfile from '../components/DashBoard/JobDetailProfile';
 import JobQuestion from '../components/Job/JobQuestion';
 import { Paragraph, SubTitle , Title} from '../components/Typography';
+import axios from 'axios';
+import {BaseUrl} from '../api/apiURL';
 function JobDetail() {
     const {jobid} = useParams();
     const [qform, setqform] = useState(false);
+    const [job, setjob] = useState(null);
+    const [skills, setskills] = useState([]);
     const toggle = ()=>{
       setqform(!qform);
     }
+    useEffect(() => {
+     const fetch = ()=>{
+      const token = sessionStorage.getItem('bearer')
+      const config = {
+        headers: { 'x-access-token': `Bearer ${token}` }
+      };
+        axios.get(`https://htm-project.herokuapp.com/company/job/?id=${jobid}`,config).then((ele)=>{
+          console.log(ele.data.data)
+          setjob(ele.data.data[0])
+          let res = ele.data.data[0].skills;
+          console.log(res.split(','))
+          setskills( res.split(','))
+          console.log(res)
+        }).catch((err)=>{
+          console.log(err)
+        })
+     }
+     fetch()
+    }, []);
   return (
     <div className='w-[100%] mx-auto min-h-screen'>
 {
-  qform ?       <JobQuestion toggle={toggle} /> :  null
+  qform ?       <JobQuestion  toggle={toggle} /> :  null
 }
      <div className="w-[80%] mx-auto ">
-     <JobDetailProfile/>
+     <JobDetailProfile id={job?.postedBy} job={job} />
         <section className="details w-full flex items-center justify-start">
         <i className='bx bxs-time-five text-gray-400 px-2 ' ></i>
        <span className='text-gray-500 pr-10'> Full Time</span>
@@ -34,43 +57,30 @@ function JobDetail() {
         <section className='text-left my-10'>
           <Title>About Us</Title>
           <Paragraph className={"my-5"}>   
-            Lorem ipsum dolor sit amet consectetur adipisicing elit. Illo ipsam esse commodi fugiat asperiores in consequuntur distinctio suscipit veniam modi recusandae provident dolorem id, pariatur debitis vel ullam? Eaque velit quis error maxime praesentium consectetur, beatae enim assumenda ipsam voluptatum asperiores corporis tempora cum magnam natus ad quo eum minus est. Repellendus eveniet similique odit animi asperiores quas repudiandae harum recusandae facilis, tenetur blanditiis, repellat ut molestiae maiores dicta beatae vitae delectus cumque pariatur. Adipisci accusamus repellat ipsa rem. Sapiente saepe, amet distinctio rerum minus sequi, dicta ad illum cum debitis deleniti molestiae. Rem sit, quo autem sed quae voluptate.
+          {job?.description}
           </Paragraph>
         </section>
 
 
-        <section className="skills flex">
-             <div className=" mr-2  skill bg-light-blue py-3 rounded-full text-primary px-10">
-              UI UX
-             </div>
-             
-             <div className=" mr-2  skill bg-light-blue py-3 rounded-full text-primary px-10">
-              UI UX
-             </div>
-
-             <div className=" mr-2  skill bg-light-blue py-3 rounded-full text-primary px-10">
-              UI UX
-             </div>
-
-             <div className=" mr-2  skill bg-light-blue py-3 rounded-full text-primary px-10">
-              UI UX
-             </div>
+        <section className="skills flex justify-start items-center">
+          <Title >Skills</Title>
+          <span className="mx-5"></span>
+        {
+          skills.length>0 ? skills.map((ele)=>{
+            return      <div className=" mr-2  skill bg-light-blue py-3 rounded-full text-primary px-10">
+            {ele}
+           </div>
+      
+          }) : null
+        }     
+        
         </section>
 
 
         <section className="work my-10 text-left">
-        <Title >Work Will Include</Title>
+        <Title >What Will You Do ?</Title>
         <div className="span my-5"></div>
-        <li className='ml-3 text-gray-500 '>Lorem ipsum dolor sit amet consectetur adipisicing elit. Earum, tempore!</li>
-        <li className='ml-3 text-gray-500 '>Lorem ipsum dolor sit amet consectetur adipisicing elit. Earum, tempore!</li>
-        <li className='ml-3 text-gray-500 '>Lorem ipsum dolor sit amet consectetur adipisicing elit. Earum, tempore!</li>
-        <li className='ml-3 text-gray-500 '>Lorem ipsum dolor sit amet consectetur adipisicing elit. Earum, tempore!</li>
-        <li className='ml-3 text-gray-500 '>Lorem ipsum dolor sit amet consectetur adipisicing elit. Earum, tempore!</li>
-        <li className='ml-3 text-gray-500 '>Lorem ipsum dolor sit amet consectetur adipisicing elit. Earum, tempore!</li>
-        <li className='ml-3 text-gray-500 '>Lorem ipsum dolor sit amet consectetur adipisicing elit. Earum, tempore!</li>
-        <li className='ml-3 text-gray-500 '>Lorem ipsum dolor sit amet consectetur adipisicing elit. Earum, tempore!</li>
-        <li className='ml-3 text-gray-500 '>Lorem ipsum dolor sit amet consectetur adipisicing elit. Earum, tempore!</li>
-
+        {job?.tasks}
         </section>
 
 
@@ -78,33 +88,17 @@ function JobDetail() {
         <section className="work my-10 text-left">
         <Title >You Should Have</Title>
         <div className="span my-5"></div>
-        <li className='ml-3 text-gray-500 '>Lorem ipsum dolor sit amet consectetur adipisicing elit. Earum, tempore!</li>
-        <li className='ml-3 text-gray-500 '>Lorem ipsum dolor sit amet consectetur adipisicing elit. Earum, tempore!</li>
-        <li className='ml-3 text-gray-500 '>Lorem ipsum dolor sit amet consectetur adipisicing elit. Earum, tempore!</li>
-        <li className='ml-3 text-gray-500 '>Lorem ipsum dolor sit amet consectetur adipisicing elit. Earum, tempore!</li>
-        <li className='ml-3 text-gray-500 '>Lorem ipsum dolor sit amet consectetur adipisicing elit. Earum, tempore!</li>
-        <li className='ml-3 text-gray-500 '>Lorem ipsum dolor sit amet consectetur adipisicing elit. Earum, tempore!</li>
-        <li className='ml-3 text-gray-500 '>Lorem ipsum dolor sit amet consectetur adipisicing elit. Earum, tempore!</li>
-        <li className='ml-3 text-gray-500 '>Lorem ipsum dolor sit amet consectetur adipisicing elit. Earum, tempore!</li>
-        <li className='ml-3 text-gray-500 '>Lorem ipsum dolor sit amet consectetur adipisicing elit. Earum, tempore!</li>
-
+        {
+          job?.requirements
+        }
         </section>
 
         <section className="work my-10 text-left">
         <Title >Perks</Title>
         <div className="span my-5"></div>
-        <li className='ml-3 text-gray-500 '>
-          Lorem ipsum dolor sit amet consectetur adipisicing elit. Provident nobis quaerat esse, quam expedita aliquid veritatis minus quae voluptas suscipit placeat laborum cupiditate sequi sunt aut vel nihil consectetur numquam unde modi quis similique aliquam. Adipisci, quibusdam in repudiandae itaque veniam quas totam porro sunt. Corporis voluptates eius similique odio!
-          Lorem ipsum dolor sit amet consectetur adipisicing elit. Earum, tempore!</li>
-
-        <li className='ml-3 text-gray-500 '>
-          Lorem ipsum dolor sit amet consectetur adipisicing elit. Provident nobis quaerat esse, quam expedita aliquid veritatis minus quae voluptas suscipit placeat laborum cupiditate sequi sunt aut vel nihil consectetur numquam unde modi quis similique aliquam. Adipisci, quibusdam in repudiandae itaque veniam quas totam porro sunt. Corporis voluptates eius similique odio!
-          Lorem ipsum dolor sit amet consectetur adipisicing elit. Earum, tempore!</li>
-
-        <li className='ml-3 text-gray-500 '>
-          Lorem ipsum dolor sit amet consectetur adipisicing elit. Provident nobis quaerat esse, quam expedita aliquid veritatis minus quae voluptas suscipit placeat laborum cupiditate sequi sunt aut vel nihil consectetur numquam unde modi quis similique aliquam. Adipisci, quibusdam in repudiandae itaque veniam quas totam porro sunt. Corporis voluptates eius similique odio!
-          Lorem ipsum dolor sit amet consectetur adipisicing elit. Earum, tempore!</li>
-   
+        {
+          job?.perks
+        }
         </section>
         <PrimaryButton onClick = {()=>toggle()}>Apply Now</PrimaryButton>
         <div className="spacer mb-10"></div>

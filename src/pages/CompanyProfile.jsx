@@ -1,4 +1,4 @@
-import React, { useState } from "react";
+import React, { useEffect, useState } from "react";
 
 import companyCoverImage from "../components/assets/images/companyCoverImage.svg";
 // import companyLogo from "../components/assets/images/companyLogo.svg";
@@ -9,12 +9,33 @@ import calendarIcon from "../components/assets/icons/calendar.svg";
 import locationIcon from "../components/assets/icons/location.svg";
 import JobCardForm from "../components/CompanyProfile/JobCardForm";
 import AboutForm from "../components/CompanyProfile/AboutForm";
-
+import {useParams} from 'react-router-dom';
+import axios from 'axios';
+import { BaseUrl, config } from "../api/apiURL";
 
 function CompanyProfile() {
   const [form, setform] = useState(false);
   const [about, setabout] = useState(false);
-
+  const [company, setcompany] = useState(null);
+  let {id} = useParams();
+  const fetchProfile = (id)=>{
+    let token = sessionStorage.getItem('bearer');
+    if(token){
+      const mconfig = config(token);
+      axios.get(`${BaseUrl}/company/getcompany/?id=${id}`,mconfig).then((ele)=>{
+            
+        setcompany(ele.data.data[0])
+        console.log(ele.data.data[0])
+  
+      }).catch((err)=>{
+        console.log(err);
+      })
+  
+    }
+  }
+  useEffect(() => {
+    fetchProfile(id);
+  }, [id]);
   const toggle = ()=>{
     setform(!form)
   }
@@ -31,12 +52,14 @@ function CompanyProfile() {
         about ? <AboutForm toggle={toggleabout} /> : null
       }
       <div className="w-full h-auto">
-        <img src={companyCoverImage} alt="" className="h-full w-full" />
+        <img 
+          src={company?.coverPic ?company.coverPic:"https://static.vecteezy.com/system/resources/previews/006/892/682/original/microsoft-logo-icon-editorial-free-vector.jpg"}
+          alt="coverstudent" className="max-h-[35vh] object-cover w-full" />
       </div>
     
       <div className="container mx-auto">
         <img
-          src={"https://static.vecteezy.com/system/resources/previews/006/892/682/original/microsoft-logo-icon-editorial-free-vector.jpg"}
+          src={company?.profileURL ?company.coverPic:"https://static.vecteezy.com/system/resources/previews/006/892/682/original/microsoft-logo-icon-editorial-free-vector.jpg"}
           alt=""
           className="mt-[-10vh] rounded-full w-[20vh] h-[20vh] "
         />
@@ -203,9 +226,9 @@ function CompanyProfile() {
           </div>
 
           <div className="grid grid-cols-3 w-full ">
+            {/* <JobCard />
             <JobCard />
-            <JobCard />
-            <JobCard />
+            <JobCard /> */}
           </div>
         </div>
       </div>

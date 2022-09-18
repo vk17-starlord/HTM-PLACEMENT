@@ -49,7 +49,7 @@ const AuthContext = createContext({});
                 axios.get(`${BaseUrl}/student/profile`,config).then((res)=>{
                    let user = res.data.data[0];
                    setUserData(user)
-                   console.log(user.name)
+                
                 }).catch((err)=>console.log(err))
     
             } catch (error) {
