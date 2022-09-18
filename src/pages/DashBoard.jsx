@@ -8,6 +8,8 @@ import SearchInput from '../components/SearchInput'
 import { Title} from '../components/Typography';
 import {useAuth } from '../hooks/Auth';
 import CompanyDashboard from './CompanyDashboard';
+import axios from 'axios';
+import { BaseUrl, config } from '../api/apiURL';
 const SelectInput = ()=>{
  return <select id="countries" class="bg-gra text-gray-500 text-sm rounded-lg focus:ring-blue-500 focus:border-blue-500 block w-full p-2.5 ">
   <option value="new">Newest </option>
@@ -15,17 +17,34 @@ const SelectInput = ()=>{
   <option value="relevance">Relevance</option>
 </select>
 }
-
 function DashBoard() {
   const { GetUser, getCompany } = useAuth();
   const [userType, setuserType] = useState(null);
+  const [Jobs, setJobs] = useState([]);
+  const fetchJobs = ()=>{
+  
+    let token = sessionStorage.getItem('bearer')
+    if(token){
+      const configsetup = config(token)
+      axios.get(`${BaseUrl}/student/getjob`,configsetup).then((res)=>{
+        setJobs(res.data.data);
+      }).catch((err)=>{
+        console.log(err)
+      })
+    }
+  }
+
   useEffect(() => {
     let type = sessionStorage.getItem("userType");
     setuserType(type);
     if (type === "student") {
       GetUser();
+     
+      fetchJobs();
     } else {
       getCompany();
+  
+
     }
   }, []);
   let arr = [1, 2, 3, 4, 5, 6, 7, 8, 9, 10, 11, 12];
@@ -257,16 +276,18 @@ function DashBoard() {
               </div>
               <div className="main-layout px-10">
                 <div className="flex  items-center justify-between">
-                  <Title> Showing 50 Results</Title>
+                  <Title> Showing {Jobs.length} Results</Title>
                   <div className="sort w-64 flex justify-between">
                     <SelectInput />
                   </div>
                 </div>
     
                 <div className="grid gap-4 my-10 grid-cols-2 lg:grid-cols-3">
-                  {arr.map((ele) => {
-                    return <JobCard key={ele}></JobCard>;
-                  })}
+                  {Jobs.length>0 ? (
+                    Jobs.map((ele)=>{
+                     return <JobCard job={ele} />
+                    })
+                  ) : null}
                 </div>
               </div>
             </div>

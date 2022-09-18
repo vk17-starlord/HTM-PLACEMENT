@@ -32,7 +32,7 @@ export const AboutForm = ({toggle}) => {
             initialValues={initialValues}
             validationSchema={validationSchema}
             onSubmit={(data) =>{
-                console.log(data);
+                
                 toggle()
                 
             }}

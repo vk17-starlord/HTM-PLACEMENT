@@ -5,7 +5,7 @@ const PrimaryButton = ({ children, className, ...props }) => {
 
 
 const PrimaryLinkButton = ({ children, link = "", className, ...props }) => {
-    return <a href={link} className='px-10 py-2 bg-primary text-white rounded-md hover:bg-primary-dark '  {...props}>{children} </a>
+    return <a href={link} className={`px-10 py-2 bg-primary text-white rounded-md hover:bg-primary-dark ${className}`} {...props}>{children} </a>
 }
 
 export { PrimaryButton, PrimaryLinkButton }
