@@ -37,6 +37,9 @@ function App() {
         <Route path='/Job/:jobid' element={<Protected isLoggedIn={validUser()}>
  <JobDetail />
  </Protected>}/>
+
+
+
         <Route path='/student/:id' element={<Protected isLoggedIn={validUser()}>
  <ProfilePage />
  </Protected>} />

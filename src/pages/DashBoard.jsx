@@ -6,6 +6,7 @@ import Header from '../components/Header';
 import SearchInput from '../components/SearchInput'
 import { Title} from '../components/Typography';
 import {useAuth } from '../hooks/Auth';
+import CompanyDashboard from './CompanyDashboard';
 const SelectInput = ()=>{
  return <select id="countries" class="bg-gra text-gray-500 text-sm rounded-lg focus:ring-blue-500 focus:border-blue-500 block w-full p-2.5 ">
   <option value="new">Newest </option>
@@ -31,7 +32,9 @@ function DashBoard() {
         {
             userType==="company"?<CompanyHeader/>:<Header/>
         }
-        <div className="container py-10  mx-auto">
+
+      {
+        userType==="company"?<CompanyDashboard/>:<div className="w-[90%] py-10  mx-auto">
         <SearchInput/>
         <div className=" my-10 w-full grid-cols-[3fr,9fr] grid">
         <div className="sidebar ">
@@ -157,6 +160,9 @@ function DashBoard() {
         </div>
         </div>
         </div>
+      }
+
+        
     </div>
   )
 }

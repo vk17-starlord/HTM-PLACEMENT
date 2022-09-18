@@ -56,7 +56,6 @@ const AuthContext = createContext({});
             navigate('/')
             }
         }else{
-            alert("Error occurred");
             navigate('/')
         }
        

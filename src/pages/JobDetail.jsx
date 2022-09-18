@@ -1,14 +1,22 @@
-import React from 'react'
+import React, { useState } from 'react'
 import {useParams} from 'react-router-dom';
 import { PrimaryButton } from '../components/Buttons';
 import JobDetailProfile from '../components/DashBoard/JobDetailProfile';
+import JobQuestion from '../components/Job/JobQuestion';
 import { Paragraph, SubTitle , Title} from '../components/Typography';
 function JobDetail() {
     const {jobid} = useParams();
-    
+    const [qform, setqform] = useState(false);
+    const toggle = ()=>{
+      setqform(!qform);
+    }
   return (
-    <div className='w-[70%] mx-auto min-h-screen'>
-        <JobDetailProfile/>
+    <div className='w-[100%] mx-auto min-h-screen'>
+{
+  qform ?       <JobQuestion toggle={toggle} /> :  null
+}
+     <div className="w-[80%] mx-auto ">
+     <JobDetailProfile/>
         <section className="details w-full flex items-center justify-start">
         <i className='bx bxs-time-five text-gray-400 px-2 ' ></i>
        <span className='text-gray-500 pr-10'> Full Time</span>
@@ -98,8 +106,9 @@ function JobDetail() {
           Lorem ipsum dolor sit amet consectetur adipisicing elit. Earum, tempore!</li>
    
         </section>
-        <PrimaryButton>Apply Now</PrimaryButton>
+        <PrimaryButton onClick = {()=>toggle()}>Apply Now</PrimaryButton>
         <div className="spacer mb-10"></div>
+      </div>  
     </div>
   )
 }
