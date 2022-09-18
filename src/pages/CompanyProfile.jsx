@@ -22,26 +22,27 @@ function CompanyProfile() {
     setabout(!about)
   }
   return (
-    <div className="w-full h-screen flex flex-col items-start">
-      <div className="w-full h-auto">
-        <img src={companyCoverImage} alt="" className="h-full w-full" />
-      </div>
-      {
+    <div className="w-full min-h-screen  overflow-hidden">
+        {
         form ? 
        <JobCardForm toggle={toggle} /> : null
       }
       {
         about ? <AboutForm toggle={toggleabout} /> : null
       }
-      <div>
-        {/* <img
-          src={companyLogo}
+      <div className="w-full h-auto">
+        <img src={companyCoverImage} alt="" className="h-full w-full" />
+      </div>
+    
+      <div className="container mx-auto">
+        <img
+          src={"https://static.vecteezy.com/system/resources/previews/006/892/682/original/microsoft-logo-icon-editorial-free-vector.jpg"}
           alt=""
-          className="absolute top-[5rem] left-32 aspect-square w-40 lg:w-64 lg:top-[12rem] lg:left-64"
-        /> */}
+          className="mt-[-10vh] rounded-full w-[20vh] h-[20vh] "
+        />
       </div>
 
-      <div className="ml-16 lg:ml-56  w-[52rem] lg:w-[92rem]">
+      <div className="container mx-auto ">
         <div className="flex flex-row justify-between w-full mt-10 ">
           <span className="  text-xl font-semibold ">Microsoft</span>
           <span onClick={()=>toggle()}>
@@ -207,7 +208,6 @@ function CompanyProfile() {
             <JobCard />
           </div>
         </div>
-        <div className="h-48"></div>
       </div>
     </div>
   );

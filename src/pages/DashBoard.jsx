@@ -1,4 +1,5 @@
-import React, { useEffect } from 'react'
+import React, { useEffect, useState } from 'react'
+import CompanyHeader from '../components/CompanyHeader';
 import CreateJobAlert from '../components/DashBoard/CreateJobAlert'
 import JobCard from '../components/DashBoard/JobCard';
 import Header from '../components/Header';
@@ -13,14 +14,23 @@ const SelectInput = ()=>{
 </select>
 }
 function DashBoard() {
-  const {GetUser} = useAuth();
+  const {GetUser,getCompany} = useAuth();
+  const [userType, setuserType] = useState(null);
   useEffect(()=>{
-    GetUser()
+    let type = sessionStorage.getItem('userType');
+    setuserType(type);
+    if(type==="student"){
+        GetUser()
+    }else{
+        getCompany();
+    }
 },[])
   let arr = [1,2,3,4,5,6,7,8,9,10,11,12];
   return (
     <div className='w-full bg-[#F8F7FF] min-h-screen pt-10'>
-        <Header/>
+        {
+            userType==="company"?<CompanyHeader/>:<Header/>
+        }
         <div className="container py-10  mx-auto">
         <SearchInput/>
         <div className=" my-10 w-full grid-cols-[3fr,9fr] grid">

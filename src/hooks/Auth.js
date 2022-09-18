@@ -8,13 +8,35 @@ const AuthContext = createContext({});
     const [UserData, setUserData] = useState(null);
     const navigate = useNavigate();
     let userToken = sessionStorage.getItem("bearer");
-    console.log(userToken)
+  
     const validUser = ()=>{
         if(userToken)
         {
             return true;
         }
         return false;
+    }
+   
+    const getCompany = async()=>{
+        const token = sessionStorage.getItem('bearer')
+        if(token){
+            try {
+                const config = {
+                    headers: { 'x-access-token': `Bearer ${token}` }
+                };
+                axios.get(`${BaseUrl}/company/profile`,config).then((res)=>{
+                  setUserData(res.data.data)
+                }).catch((err)=>console.log(err))
+         
+
+            } catch (error) {
+            navigate('/')
+            }
+        }else{
+            alert("Error occurred");
+            navigate('/')
+        }
+       
     }
 
     const GetUser=async()=>{
@@ -27,9 +49,9 @@ const AuthContext = createContext({});
                 axios.get(`${BaseUrl}/student/profile`,config).then((res)=>{
                    let user = res.data.data[0];
                    setUserData(user)
+                   console.log(user.name)
                 }).catch((err)=>console.log(err))
-         
-
+    
             } catch (error) {
             navigate('/')
             }
@@ -55,7 +77,7 @@ const AuthContext = createContext({});
         }
      return null;
     }
-    return <AuthContext.Provider value={{validUser,getToken , LogOut,GetUser,setToken,UserData}} >
+    return <AuthContext.Provider value={{validUser,getCompany, getToken , LogOut,GetUser,setToken,UserData}} >
         {children}
     </AuthContext.Provider>
 }

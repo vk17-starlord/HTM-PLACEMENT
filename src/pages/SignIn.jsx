@@ -31,7 +31,7 @@ const SignIn = () => {
           ).then((ele)=>{
             let data = ele.data;
             let {token}=data;
-            console.log(token)
+            sessionStorage.setItem('userType',values.userType);
             setToken(token)
             navigate('/dashboard');
           }).catch((err)=>alert(err.response.data.message))
@@ -84,8 +84,8 @@ const SignIn = () => {
           <button
             type="submit"
 
-            className="bg-blue-600 disabled:bg-gray-400 text-white w-[25rem]  lg:w-[30rem] px-12 py-2 rounded-lg "
-          >Sign In
+            className="bg-blue-600 disabled:bg-gray-400 text-white w-[25rem]  lg:w-[30rem] px-12 py-2 rounded-lg ">
+              Sign In
           </button>
         </div>
 
