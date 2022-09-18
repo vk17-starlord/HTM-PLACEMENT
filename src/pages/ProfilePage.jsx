@@ -47,10 +47,11 @@ function ProfilePage() {
                     <ProfileImg />
                 </div>
                 <div className='flex flex-row justify-center mt-3 '>
-                    <a href="#" className='mx-4'><img alt='icon' src="https://img.icons8.com/color/30/000000/instagram-new--v1 png" /></a>
-                    <a href="#" className=''><img alt='icon' src="https://img.icons8.com/color/30/000000/twitter--v1.png" /></a>
-                    <a href="#" className='mx-4'><img alt='icon' src="https://img.icons8.com/fluency/30/000000/github.png" /></a>
-                    <a href="#" className=''><img alt='icon' src="https://img.icons8.com/ultraviolet/30/000000/domain.png" /></a>
+                    <a href={""} className='mx-4'><img alt='icon' src="https://img.icons8.com/color/30/000000/instagram-new--v1 png" /></a>
+                    {console.log("")}
+                    <a href={""} className=''><img alt='icon' src="https://img.icons8.com/color/30/000000/twitter--v1.png" /></a>
+                    <a href={""} className='mx-4'><img alt='icon' src="https://img.icons8.com/fluency/30/000000/github.png" /></a>
+                    <a href={""} className=''><img alt='icon' src="https://img.icons8.com/ultraviolet/30/000000/domain.png" /></a>
                 </div>
             </div>
             <div className=" flex justify-between lg:px-72 px-[30px]">
@@ -76,42 +77,103 @@ function ProfilePage() {
                 </div>
             </div>
             <div className='flex justify-start  lg:px-72 px-[30px] mt-5'>
-                <span>Write that one line that motivates or describes you</span>
+                <span>Tech Geek  | Vlogger | Coder | Open Source Enthusiast
+                </span>
             </div>
-            <div className=' lg:px-72 px-[30px] mt-5'>
-                <div className="flex justify-center items-center px-2 py-2 w-[271px]  border border-light-voilet rounded-full bg-light-blue text-base font-medium">
-                    <div className="flex max-w-full leading-none text-xs font-normal">Add Role</div>
+            <div className='flex flex-row justify-start md:justify-evenly w-auto md:mx-auto '>
+                <div className='  px-[30px] mt-5 mb-4'>
+                    <div className="flex justify-center items-center px-2 py-2   text-light-voilet rounded-full bg-light-blue text-base font-medium">
+                        <div className="flex max-w-full leading-none text-xs font-normal">Frontend Development</div>
+                    </div>
+                </div>
+                <div className='  px-[30px] mt-5 mb-4'>
+                    <div className="flex justify-center items-center px-2 py-2  text-light-voilet rounded-full bg-light-blue text-base font-medium">
+                        <div className="flex max-w-full leading-none text-xs font-normal">UI UX Designer</div>
+                    </div>
+                </div>
+                <div className='  px-[30px] mt-5 mb-4'>
+                    <div className="flex justify-center items-center px-2 py-2  text-light-voilet rounded-full bg-light-blue text-base font-medium">
+                        <div className="flex max-w-full leading-none text-xs font-normal">Full Stack Developer</div>
+                    </div>
                 </div>
             </div>
-            <div className='flex  justify-start border-b-2 pb-2 lg:mx-72  mx-[30px] mt-5'>
-                <span>Education</span>
-                <div className='text-p-gray mx-auto  flex flex-col justify-center items-center'>No Education Added </div>
-                <div className='p-2 rounded-full bg-[#F8F7FF]'>
-                    <p className='text-light-voilet px-2 text-lg  cursor-pointer' onClick={() => toggle2()}>+</p>
+            <span className='h-fit'>About</span>
+            <div className='flex  justify-between border-b-2 pb-2 lg:mx-72 h-auto p-4 mx-[30px] mt-5'>
+                <p className='self-center text-p-gray'>Lorem ipsum dolor sit amet consectetur adipisicing elit. Laboriosam corrupti rerum earum id itaque blanditiis voluptas? Enim laudantium, consectetur maiores nisi distinctio libero dolor temporibus iusto amet inventore dolores perferendis.</p>
+                <span className='cursor-pointer'  >
+
+                    <svg className="w-6 h-6" fill="currentColor" viewBox="0 0 20 20" xmlns="http://www.w3.org/2000/svg"><path d="M17.414 2.586a2 2 0 00-2.828 0L7 10.172V13h2.828l7.586-7.586a2 2 0 000-2.828z" /><path fillRule="evenodd" d="M2 6a2 2 0 012-2h4a1 1 0 010 2H4v10h10v-4a1 1 0 112 0v4a2 2 0 01-2 2H4a2 2 0 01-2-2V6z" clipRule="evenodd" /></svg>
+                </span>
+            </div>
+            <span>Education</span>
+            <div className='flex  justify-start border-b-2 pb-2 lg:mx-72 h-auto mx-[30px] mt-5'>
+                {/* <div className='text-p-gray mx-auto  flex flex-col justify-center items-center'>No Education Added </div>
+                 */}
+                <div className='text-p-gray mx-auto  flex flex-col justify-center items-center'>
+                    <div className='bg-light-blue p-4 rounded-lg '>
+                        <p className="text-light-voilet text-sm">Diploma in computer science</p>
+                        <p className='text-xs my-1 '>MIT College Pune , India</p>
+                        <p className='text-xs '>7-5-2018   to 8-4-2021</p>
+                    </div>
                 </div>
-            </div><div className='flex   justify-start border-b-2 pb-2  lg:mx-72 mx-[30px] mt-5'>
-                <span>Project</span>
-                <div className='text-p-gray  mx-auto flex flex-col justify-center items-center'>No Project Added </div><div className='p-2 rounded-full bg-[#F8F7FF]'>
-                    <p className='text-light-voilet px-2 text-lg cursor-pointer' onClick={() => toggle3()}>+</p>
+                <div className='text-p-gray mx-auto  flex flex-col justify-center items-center'>
+                    <div className='bg-light-blue p-4 rounded-lg '>
+                        <p className="text-light-voilet text-sm">B.E Computer Engineering</p>
+                        <p className='text-xs my-1 '>VIT College Pune , India</p>
+                        <p className='text-xs '>7-5-2018   to 8-4-2021</p>
+                    </div>
                 </div>
 
-            </div><div className='flex   justify-start border-b-2 pb-2  lg:mx-72 mx-[30px] mt-5'>
+                <div className='p-2 rounded-full bg-[#F8F7FF] h-fit self-center'>
+                    <p className='text-light-voilet px-2 text-lg  cursor-pointer ' onClick={() => toggle2()}>+</p>
+                </div>
+            </div>
+            <span className='h-fit'>Project</span>
+            <div className='flex   justify-start border-b-2 p-2  lg:mx-72 h-auto  mx-[30px] bg-light-blue  '>
+                {/* <div className='text-p-gray  mx-auto flex flex-col justify-center items-center'>No Project Added </div> */}
+                <div className='grid grid-cols-[5fr_5fr]'>
+                    <div className=''>
+                        <img src="" alt="" className='' />
+                    </div>
+                    <div className=''>
+                        <div className='flex flex-row justify-between '>
+                            <p className="text-[25px]">Investment Landing Page</p>
+                            <div className='p-2 rounded-full bg-[#F8F7FF] h-fit self-center'>
+                                <p className='text-light-voilet px-2 text-lg cursor-pointer  ' onClick={() => toggle6()}>+</p>
+                            </div>
+
+                        </div>
+                        <div className='my-3 flex flex-start '>
+                            <span className='text-light-voilet text-sm bg-light-blue mr-4 px-4 py-1 rounded-xl'>Frontend Development</span>
+                            <span className='text-light-voilet text-sm bg-light-blue  px-4 py-1 rounded-xl'>UI UX Design</span>
+                        </div>
+                        <div className='text-p-gray text-left'>
+                            Lorem ipsum dolor sit amet, consectetur adipiscing elit. Venenatis
+                        </div>
+                    </div>
+
+                </div>
+                {/* <div className='p-2 rounded-full bg-[#F8F7FF] h-fit self-center'>
+                    <p className='text-light-voilet px-2 text-lg cursor-pointer ' onClick={() => toggle3()}>+</p>
+                </div> */}
+
+            </div><div className='flex   justify-start border-b-2 pb-2 h-auto p-4 lg:mx-72 mx-[30px] mt-5'>
                 <span>Past Experience</span>
-                <div className='text-p-gray mx-auto  flex flex-col  justify-center items-center'>No Past Experience Added </div><div className='p-2 rounded-full bg-[#F8F7FF]'>
-                    <p className='text-light-voilet px-2 text-lg cursor-pointer' onClick={() => toggle4()}>+</p>
+                <div className='text-p-gray mx-auto  flex flex-col  justify-center items-center'>No Past Experience Added </div><div className='p-2 rounded-full bg-[#F8F7FF] h-fit self-center'>
+                    <p className='text-light-voilet px-2 text-lg cursor-pointer ' onClick={() => toggle4()}>+</p>
                 </div>
 
             </div>
-            <div className='flex   justify-start border-b-2 pb-2  lg:mx-72 mx-[30px] mt-5'>
+            <div className='flex   justify-start border-b-2 pb-2 h-auto p-4  lg:mx-72 mx-[30px] mt-5'>
                 <span>Certifications</span>
-                <div className='text-p-gray mx-auto  flex  flex-col justify-center items-center'>No Certifications Added </div><div className='p-2 rounded-full bg-[#F8F7FF]'>
-                    <p className='text-light-voilet px-2 text-lg cursor-pointer' onClick={() => toggle5()}>+</p>
+                <div className='text-p-gray mx-auto  flex  flex-col justify-center items-center'>No Certifications Added </div><div className='p-2 rounded-full bg-[#F8F7FF] h-fit self-center'>
+                    <p className='text-light-voilet px-2 text-lg cursor-pointer ' onClick={() => toggle5()}>+</p>
                 </div>
 
-            </div><div className='flex justify-start pb-2  lg:mx-72 mx-[30px] mt-5'>
+            </div><div className='flex justify-start pb-2 h-auto p-4  lg:mx-72 mx-[30px] mt-5'>
                 <span>Skills</span>
-                <div className='text-p-gray mx-auto  flex flex-col  justify-center items-center'>No Skills Added </div><div className='p-2 rounded-full bg-[#F8F7FF]'>
-                    <p className='text-light-voilet px-2 text-lg cursor-pointer ' onClick={() => toggle6()}>+</p>
+                <div className='text-p-gray mx-auto  flex flex-col  justify-center items-center'>No Skills Added </div><div className='p-2 rounded-full bg-[#F8F7FF] h-fit self-center'>
+                    <p className='text-light-voilet px-2 text-lg cursor-pointer  ' onClick={() => toggle6()}>+</p>
                 </div>
 
             </div>
