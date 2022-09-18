@@ -4,6 +4,8 @@ import { Formik, Form, Field } from "formik";
 import * as yup from "yup";
 import  {BaseUrl  }from "../api/apiURL";
 import { useNavigate } from "react-router-dom";
+import axios from 'axios'; 
+import {useAuth} from '../hooks/Auth';
 const SignIn = () => {
   const validationSchema = yup.object({
     email: yup.string().email("Invalid Email Address").required("Required"),
@@ -13,37 +15,26 @@ const SignIn = () => {
       .required("Required"),
     userType: yup.string(),
   });
+  const {setToken} = useAuth();
   const navigate = useNavigate();
   return (
     <div className="grid grid-cols-2 items-center h-screen">
       <Formik
         initialValues={{email: "", password: "", userType: "student" }}
         onSubmit={async(values) => {
+          axios.post(`${BaseUrl}/users/login`,
+          {
+            email:values.email,
+            password:values.password,
+            userType:values.userType
+          }          
+          ).then((ele)=>{
+            let data = ele.data;
+            let {token}=data;
+            setToken(token)
+            navigate('/dashboard');
+          }).catch((err)=>alert(err.response.data.message))
 
-          try {
-            const response = await fetch(`${BaseUrl}/users/login`, {
-              method: 'POST',
-              mode: 'cors', 
-              cache: 'no-cache',
-              credentials: 'same-origin',
-              headers: {
-                'Content-Type': 'application/json',
-                "access-control-allow-origin":"*"
-                // 'Content-Type': 'application/x-www-form-urlencoded',
-              },
-              redirect: 'follow', // manual, *follow, error
-              referrerPolicy: 'no-referrer', // no-referrer, *no-referrer-when-downgrade, origin, origin-when-cross-origin, same-origin, strict-origin, strict-origin-when-cross-origin, unsafe-url
-              body: JSON.stringify(values) // body data type must match "Content-Type" header
-            }).catch(err=>console.log(err));
-           let data = await response.json();
-           data= data.data;
-           
-           sessionStorage.setItem("bearer",data.token);
-           navigate('/dashboard')
-          } catch (error) {
-            navigate('/')
-          
-          }
         }}
         
         validationSchema={validationSchema}
@@ -67,6 +58,7 @@ const SignIn = () => {
           <Field
             name="password"
             type="password"
+            placeholder="YourPass@1234"
             className={errors.password ?` w-[25rem] lg:w-[30rem]   pl-8 py-2 rounded border-red-400 border-2`:"w-[25rem] lg:w-[30rem]   pl-8 py-2 rounded border-2" }
           />
         </div>

@@ -1,12 +1,14 @@
 import { createContext, useContext, useEffect, useState } from "react";
 import {useNavigate} from 'react-router-dom';
 import { BaseUrl } from "../api/apiURL";
+import axios from 'axios';
 const AuthContext = createContext({});
 
  function AuthProvider ({children}){
     const [UserData, setUserData] = useState(null);
     const navigate = useNavigate();
     let userToken = sessionStorage.getItem("bearer");
+    console.log(userToken)
     const validUser = ()=>{
         if(userToken)
         {
@@ -16,23 +18,18 @@ const AuthContext = createContext({});
     }
 
     const GetUser=async()=>{
-        const token = sessionStorage.getItem('bearer');
+        const token = sessionStorage.getItem('bearer')
         if(token){
             try {
-                
-         let data = await   fetch(`${BaseUrl}/student/profile`, {
-            headers: {
-                Accept: 'application/json',
-                Authentication: 'Bearer Token',
-                'x-access-token': `Bearer ${token}`
-              }
-          }).catch((err)=>{
-            console.log(err,"error occured")
-          })
+                const config = {
+                    headers: { 'x-access-token': `Bearer ${token}` }
+                };
+                axios.get(`${BaseUrl}/student/profile`,config).then((res)=>{
+                   let user = res.data.data[0];
+                   setUserData(user)
+                }).catch((err)=>console.log(err))
+         
 
-     data = await data.json();
-     console.log(data.data)
-     setUserData(data.data);
             } catch (error) {
             navigate('/')
             }
@@ -47,8 +44,18 @@ const AuthContext = createContext({});
         sessionStorage.removeItem("bearer");
         navigate('/');
     }
-   
-    return <AuthContext.Provider value={{validUser,LogOut,GetUser,UserData}} >
+
+    const setToken=(token)=>
+    {
+    sessionStorage.setItem('bearer',token)
+    }
+    const getToken = ()=>{
+        if(sessionStorage.getItem('token')!==null){
+            return  sessionStorage.getItem('bearer');
+        }
+     return null;
+    }
+    return <AuthContext.Provider value={{validUser,getToken , LogOut,GetUser,setToken,UserData}} >
         {children}
     </AuthContext.Provider>
 }
