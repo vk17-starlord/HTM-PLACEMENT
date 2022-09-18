@@ -5,9 +5,7 @@ function LandingPage() {
     <div className="flex flex-col justify-between min-h-screen ">
       <div className="min-h-[10vh]  flex flex-row justify-evenly items-center">
         <div className="text-start w-1/3 pl-32 lg:pl-48">Icon </div>
-        <div className="flex flex-row justify-center gap-10 text-gray-400 w-1/3">
-        
-        </div>
+        <div className="flex flex-row justify-center gap-10 text-gray-400 w-1/3"></div>
         <div className="pr-16 w-1/3">
           <a
             href="/sign-in"
@@ -17,13 +15,14 @@ function LandingPage() {
           </a>
         </div>
       </div>
-      <div className="flex flex-col justify-evenly items-center  min-h-screen ">
+      <div className="flex flex-col justify-evenly items-center  min-h-[90vh] bg-slate-50">
         <div className="text-[4rem] font-bold uppercase mx-10 ">
           The <span className="text-red-500">Modern</span> Way of getting your{" "}
           <span className="text-blue-700">Dream</span> job
         </div>
         <div className="font-semibold text-xl  ">
-          Let's Get beyond the college placements . Let's get beyond the network.
+          Let's Get beyond the college placements . Let's get beyond the
+          network.
           <p>Let Your Skills and Hardwork pay off here.</p>
         </div>
         <a

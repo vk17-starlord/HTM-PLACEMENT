@@ -19,6 +19,7 @@ function SkilsForm({ toggle }) {
                     initialValues={{
                         SkillName: "",
                         Level: "Beginer"
+
                     }}
                     validationSchema={SkillSchema}
                     onSubmit={(values) => {
@@ -36,8 +37,8 @@ function SkilsForm({ toggle }) {
 
                             <label htmlFor="Level" className='font-Inter relative left-[-190px] text-[16px] font-medium text-black'>Level</label>
                             <Field name="Level" id="Level" as="select" className=" border border-gray-300 text-gray-900 text-sm rounded-lg focus:ring-blue-500 focus:border-blue-500 block w-full p-2.5 my-3 " >
-                                <option value="Beginer" className='bg-white'>Beginer</option>
-                                <option value="Intermidiate" className='bg-white'>Intermidiate</option>
+                                <option value="Beginner" className='bg-white'>Beginer</option>
+                                <option value="Intermediate" className='bg-white'>Intermediate</option>
                             </Field>
                             {errors.Level && touched.Level ? (
                                 <div className='text-red-600 '>{errors.Level}</div>
