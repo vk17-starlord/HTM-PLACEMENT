@@ -64,7 +64,7 @@ const SignIn = () => {
             </button>
           </div>
 
-          <div className="mw-72 lg:w-96 text-center">
+          <div className="w-72 lg:w-96 text-center">
             <p className="ml-28">
               Don't Have An Account?{" "}
               <a href="/sign-up" className="text-blue-800 font-semibold">

@@ -7,6 +7,10 @@ import DashBoard from './pages/DashBoard';
 import JobDetail from './pages/JobDetail';
 import ProfilePage from './pages/ProfilePage'
 import CompanyProfile from './pages/CompanyProfile';
+import { AboutForm } from './components/CompanyProfile/AboutForm';
+import JobCardForm from './components/CompanyProfile/JobCardForm';
+
+
 function App() {
   return (
     <div className="App">
