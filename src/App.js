@@ -7,9 +7,7 @@ import DashBoard from './pages/DashBoard';
 import JobDetail from './pages/JobDetail';
 import ProfilePage from './pages/ProfilePage'
 import CompanyProfile from './pages/CompanyProfile';
-import { AboutForm } from './components/CompanyProfile/AboutForm';
-import JobCardForm from './components/CompanyProfile/JobCardForm';
-
+import JobForm from './components/JobForm';
 
 function App() {
   return (
@@ -22,6 +20,7 @@ function App() {
         <Route path='/Job/:jobid' element={<JobDetail/>}/>
         <Route path='/student/:id' element={<ProfilePage />} />
         <Route path="/company/:id" element={<CompanyProfile />} />
+        <Route path="/company/createJob" element={<JobForm />} />
       </Routes>
     </div>
   );
