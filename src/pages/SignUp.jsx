@@ -4,6 +4,8 @@ import { Formik, Form, Field } from "formik";
 import * as yup from "yup";
 import  {BaseUrl  }from "../api/apiURL";
 import { useNavigate } from "react-router-dom";
+import {useAuth} from '../hooks/Auth';
+import axios from "axios";
 const SignIn = () => {
   const validationSchema = yup.object({
     name:yup.string().min(4,"Name Must Be Greater Than 4 Characters").required("Required"),
@@ -15,35 +17,24 @@ const SignIn = () => {
     userType: yup.string(),
   });
   const navigate = useNavigate();
+  const {setToken} = useAuth();
   return (
     <div className="grid grid-cols-2 items-center h-screen">
       <Formik
         initialValues={{name:"", email: "", password: "", userType: "student" }}
-        onSubmit={async(values) => {
-        
-          try {
-            const response = await fetch(`${BaseUrl}/users/add`, {
-              method: 'POST',
-              mode: 'cors', 
-              cache: 'no-cache',
-              credentials: 'same-origin',
-              headers: {
-                'Content-Type': 'application/json',
-                "access-control-allow-origin":"*"
-                // 'Content-Type': 'application/x-www-form-urlencoded',
-              },
-              redirect: 'follow', // manual, *follow, error
-              referrerPolicy: 'no-referrer', // no-referrer, *no-referrer-when-downgrade, origin, origin-when-cross-origin, same-origin, strict-origin, strict-origin-when-cross-origin, unsafe-url
-              body: JSON.stringify(values) // body data type must match "Content-Type" header
-            }).catch(err=>console.log(err));
-           let data = await response.json();
-           console.log(data.token)
-           sessionStorage.setItem("bearer",data.token);
-           navigate('/dashboard')
-          } catch (error) {
-            navigate('/')
-          
-          }
+        onSubmit={(values) => {
+     
+          axios.post('https://htm-project.herokuapp.com/users/add', {
+          name:values.name,
+          email:values.email,
+          password:values.password,
+          userType:values.userType
+          } ).then((ele)=>{
+            let data = ele.data;
+            let {token}=data;
+            setToken(token)
+            navigate('/dashboard');
+          }).catch((err)=>alert(err.response.data.message))
         }}
         
         validationSchema={validationSchema}
@@ -74,6 +65,8 @@ const SignIn = () => {
           <p className="text-left font-semibold mb-1">Password</p>
           <Field
             name="password"
+            placeholder="YourPass@1234"
+
             type="password"
             className={errors.password ?` w-[25rem] lg:w-[30rem]   pl-8 py-2 rounded border-red-400 border-2`:"w-[25rem] lg:w-[30rem]   pl-8 py-2 rounded border-2" }
           />
